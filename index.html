@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/global.css">
+    <title>Calculo porcentagem</title>
 </head>
 <body>
     <section>
         <div>
-            <h1>Gera md5</h1>
+            <h1>Calcular porcentagem</h1>
         </div>
         <div>
-            <form method="post">
+            <form method="post" data-form-calc>
                 <div>
-                    <label>Valor</label>
-                    <input type="text" name="valor" placeholder="Digite aqui o valor a ser transformado" required>
-                </div>
+                    <label>Porcentagem</label><br/>
+                    <input type="number" data-input-porcentagem name="porcentagem" placeholder="Digite aqui o valor da porcentagem" required>
+                </div><br/>
                 <div>
-                    <button type="submit">Enviar</button>
+                    <label>Valor</label><br/>
+                    <input type="number" data-input-valor name="valor" required placeholder="Digite aqui o valor">
+                </div><br/>
+                <div>
+                    <button type="submit">Gerar</button>
+                    <button data-limpar>Limpar</button>
                 </div>
             </form>
         </div>

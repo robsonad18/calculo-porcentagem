@@ -1,45 +1,24 @@
-import {CryptoJS} from './node_modules/crypto-js';
-
-class Config {
-    private source: string = '';
-
-    constructor() {
-        this.source = '';
-    }
-}
-
-class Md5{
-    private value: number;
-
-    private code:string;
-
-    constructor(value: number) {
-        this.value = value;
-
-        this.code = CryptoJS.MD5(value.toString());
-    }
-
-    public getValue = () => {
-        return this.value;
-    }
-
-    public getCode = () => {
-        return this.code;
-    }
-}
-
-
-const form = (document!.querySelector('form') as HTMLFormElement);
+const form = (document!.querySelector('[data-form-calc]') as HTMLFormElement);
 
 form.addEventListener('submit', function(event:Event){
     event.preventDefault();
 
-    const value:string = (document!.querySelector('input') as HTMLInputElement).value.toString();
+    let porcentagem = (document!.querySelector('[data-input-porcentagem]') as HTMLInputElement).value;
+    let valor       = (document!.querySelector('[data-input-valor]') as HTMLInputElement).value;
 
-    if (!value) {
-        throw new Error('Erro ao gerar valor');
+    if (!porcentagem || !valor) {
+        throw new Error('Nenhum valor encontrado');
     }
 
-    (document!.getElementById('retorno') as HTMLDivElement).innerHTML = value;
+    let calc = (Number(valor) / 100) * Number(porcentagem);
+
+    (document!.querySelector('h1') as HTMLElement).textContent = calc.toString() + '%';
+
 });
 
+
+(document!.querySelector('[data-limpar]') as HTMLButtonElement).addEventListener('click',function(event:Event){
+    event.preventDefault();
+
+    window.location.reload();
+});

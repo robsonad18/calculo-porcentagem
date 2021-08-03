@@ -1,33 +1,16 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var crypto_js_1 = require("./node_modules/crypto-js");
-var Config = /** @class */ (function () {
-    function Config() {
-        this.source = '';
-        this.source = '';
-    }
-    return Config;
-}());
-var Md5 = /** @class */ (function () {
-    function Md5(value) {
-        var _this = this;
-        this.getValue = function () {
-            return _this.value;
-        };
-        this.getCode = function () {
-            return _this.code;
-        };
-        this.value = value;
-        this.code = crypto_js_1.CryptoJS.MD5(value.toString());
-    }
-    return Md5;
-}());
-var form = document.querySelector('form');
+var form = document.querySelector('[data-form-calc]');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    var value = document.querySelector('input').value.toString();
-    if (!value) {
-        throw new Error('Erro ao gerar valor');
+    var porcentagem = document.querySelector('[data-input-porcentagem]').value;
+    var valor = document.querySelector('[data-input-valor]').value;
+    if (!porcentagem || !valor) {
+        throw new Error('Nenhum valor encontrado');
     }
-    document.getElementById('retorno').innerHTML = value;
+    var calc = (Number(valor) / 100) * Number(porcentagem);
+    document.querySelector('h1').textContent = calc.toString() + '%';
+});
+document.querySelector('[data-limpar]').addEventListener('click', function (event) {
+    event.preventDefault();
+    window.location.reload();
 });
